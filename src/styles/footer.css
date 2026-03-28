@@ -1,0 +1,230 @@
+/* ================================
+   FOOTER STYLES
+================================ */
+.footer {
+  background: #0a0a0a;
+  color: #f9fafb;
+  padding: 15px 15px 15px;
+  margin-top: 40px;
+  border-top: 1px solid rgba(94, 152, 138, 0.961);
+  position: relative;
+}
+
+/* Animated background effect */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #64ffda 50%, 
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Brand Section */
+.footer-brand {
+  text-align: center;
+  padding-bottom:1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  background: linear-gradient(90deg, #64ffda, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: #9ca3af;
+  margin: 0;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+/* Copyright Section */
+.footer-copyright {
+  text-align: center;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.footer-developer {
+  font-size: 15px;
+  color: #d1d5db;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-developer::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #64ffda;
+  border-radius: 50%;
+}
+
+.footer-rights {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 15px 15px;
+    margin-top: 40px;
+  }
+  
+  .footer-content {
+    gap: 25px;
+  }
+  
+  .footer-title {
+    font-size: 20px;
+  }
+  
+  .footer-tagline {
+    font-size: 13px;
+  }
+  
+  .footer-developer {
+    font-size: 14px;
+  }
+  
+  .footer-rights {
+    font-size: 12px;
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .footer {
+    padding: 25px 12px 12px;
+    margin-top: 30px;
+  }
+  
+  .footer-brand {
+    padding-bottom: 15px;
+  }
+  
+  .footer-title {
+    font-size: 18px;
+  }
+  
+  .footer-tagline {
+    font-size: 12px;
+  }
+  
+  .footer-copyright {
+    padding-top: 20px;
+  }
+  
+  .footer-developer {
+    font-size: 13px;
+  }
+  
+  .footer-rights {
+    font-size: 11px;
+  }
+  
+  .back-to-top {
+    bottom: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+/* ================================
+   ANIMATIONS
+================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.footer {
+  animation: fadeIn 0.6s ease forwards;
+}

@@ -1,0 +1,570 @@
+/* ================================
+   DASHBOARD STYLES - RESPONSIVE
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================================
+   BASE & BACKGROUND
+================================ */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
+  color: #f8fafc;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Canvas Background */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(96, 165, 250, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 40% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 40%);
+}
+
+/* ================================
+   DASHBOARD WRAPPER
+================================ */
+.dashboard-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh; /* For mobile browsers */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(15px, 3vw, 30px);
+  backdrop-filter: blur(2px);
+  width: 100%;
+}
+
+/* ================================
+   ADMIN DASHBOARD CARD
+================================ */
+.admin-dashboard {
+  max-width: min(1200px, 95vw);
+  width: 100%;
+  padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 40px);
+  background: linear-gradient(
+    145deg,
+    rgba(30, 41, 59, 0.95) 0%,
+    rgba(15, 23, 42, 0.95) 100%
+  );
+  border-radius: clamp(20px, 4vw, 32px);
+  box-shadow: 
+    0 25px 75px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(59, 130, 246, 0.15),
+    0 0 40px rgba(59, 130, 246, 0.1);
+  text-align: center;
+  backdrop-filter: blur(20px);
+  animation: cardEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.admin-dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================================
+   HEADER SECTION
+================================ */
+.admin-dashboard h1 {
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  margin-bottom: clamp(15px, 3vw, 20px);
+  background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+  letter-spacing: clamp(0.5px, 0.5vw, 1.5px);
+  font-weight: 800;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  line-height: 1.2;
+}
+
+@keyframes titleGlow {
+  0% { 
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
+                 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+  100% { 
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.6),
+                 0 0 60px rgba(59, 130, 246, 0.4),
+                 0 0 80px rgba(59, 130, 246, 0.2);
+  }
+}
+
+.dashboard-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: clamp(30px, 5vw, 50px);
+  color: #cbd5e1;
+  opacity: 0.9;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  line-height: 1.4;
+}
+
+.dashboard-subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(60px, 15vw, 100px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+}
+
+/* ================================
+   BUTTONS GRID - RESPONSIVE
+================================ */
+.admin-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: clamp(20px, 3vw, 30px);
+  margin-top: clamp(30px, 4vw, 40px);
+  padding: clamp(10px, 2vw, 20px);
+}
+
+/* ================================
+   BUTTON STYLES
+================================ */
+.admin-actions button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 15px);
+  padding: clamp(20px, 4vw, 25px) clamp(15px, 3vw, 20px);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+  color: #f1f5f9;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(59, 130, 246, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  overflow: hidden;
+  min-height: clamp(80px, 15vw, 100px);
+  width: 100%;
+  text-align: center;
+}
+
+.admin-actions button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.3) 0%,
+    rgba(139, 92, 246, 0.3) 50%,
+    rgba(34, 211, 238, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.admin-actions button:hover {
+  transform: translateY(-8px) scale(1.02);
+  color: #ffffff;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.admin-actions button:hover::before {
+  opacity: 1;
+}
+
+.admin-actions button:active {
+  transform: translateY(-4px) scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* ================================
+   BUTTON ICONS & LABELS
+================================ */
+.btn-icon {
+  font-size: clamp(22px, 5vw, 28px);
+  color: #7dd3fc;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.admin-actions button:hover .btn-icon {
+  transform: scale(1.2) rotate(5deg);
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(125, 211, 252, 0.6));
+}
+
+.btn-label {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.2;
+}
+
+.admin-actions button:hover .btn-label {
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* Button specific colors on hover */
+.admin-actions button:nth-child(1):hover .btn-icon { color: #10b981; }
+.admin-actions button:nth-child(2):hover .btn-icon { color: #f59e0b; }
+.admin-actions button:nth-child(3):hover .btn-icon { color: #8b5cf6; }
+.admin-actions button:nth-child(4):hover .btn-icon { color: #ef4444; }
+.admin-actions button:nth-child(5):hover .btn-icon { color: #06b6d4; }
+.admin-actions button:nth-child(6):hover .btn-icon { color: #f97316; }
+
+/* ================================
+   STAGGERED ANIMATIONS
+================================ */
+@keyframes buttonStagger {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-actions button {
+  animation: buttonStagger 0.6s ease forwards;
+  opacity: 0;
+}
+
+.admin-actions button:nth-child(1) { animation-delay: 0.1s; }
+.admin-actions button:nth-child(2) { animation-delay: 0.2s; }
+.admin-actions button:nth-child(3) { animation-delay: 0.3s; }
+.admin-actions button:nth-child(4) { animation-delay: 0.4s; }
+.admin-actions button:nth-child(5) { animation-delay: 0.5s; }
+.admin-actions button:nth-child(6) { animation-delay: 0.6s; }
+
+/* ================================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* Tablet Landscape (1024px and below) */
+@media (max-width: 1024px) {
+  .admin-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .admin-dashboard {
+    padding: 40px 30px;
+  }
+}
+
+/* Tablet Portrait (768px and below) */
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 12px;
+  }
+  
+  .admin-dashboard {
+    padding: 35px 25px;
+    border-radius: 24px;
+  }
+  
+  .admin-actions {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .admin-actions button {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20px 25px;
+    text-align: left;
+  }
+  
+  .btn-icon {
+    margin-right: 15px;
+  }
+}
+
+/* Mobile Landscape (600px and below) */
+@media (max-width: 600px) {
+  .admin-dashboard {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 1.8rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 1rem;
+  }
+  
+  .admin-actions {
+    gap: 15px;
+    padding: 10px 0;
+  }
+  
+  .admin-actions button {
+    padding: 18px 20px;
+    min-height: 75px;
+  }
+  
+  .btn-icon {
+    font-size: 22px;
+  }
+}
+
+/* Mobile Portrait (480px and below) */
+@media (max-width: 480px) {
+  .dashboard-wrapper {
+    padding: 10px;
+  }
+  
+  .admin-dashboard {
+    padding: 25px 15px;
+    border-radius: 18px;
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 1.6rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+  }
+  
+  .admin-actions button {
+    padding: 16px 18px;
+    min-height: 70px;
+    gap: 12px;
+  }
+  
+  .btn-icon {
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  
+  .btn-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Very Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .admin-dashboard {
+    padding: 20px 12px;
+    border-radius: 16px;
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 1.4rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .admin-actions button {
+    padding: 14px 16px;
+    min-height: 65px;
+    gap: 10px;
+  }
+  
+  .btn-icon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .btn-label {
+    font-size: 0.85rem;
+  }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+================================ */
+@media (hover: none) and (pointer: coarse) {
+  .admin-actions button:hover {
+    transform: none;
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(59, 130, 246, 0.2);
+  }
+  
+  .admin-actions button:active {
+    transform: scale(0.98);
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+  }
+  
+  .admin-actions button:active::before {
+    opacity: 1;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .admin-dashboard,
+  .admin-actions button {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.admin-actions button:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 3px;
+  box-shadow: 
+    0 0 0 4px rgba(59, 130, 246, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================
+   PRINT STYLES
+================================ */
+@media print {
+  .dashboard-wrapper {
+    background: white !important;
+    color: black !important;
+  }
+  
+  #bgCanvas {
+    display: none !important;
+  }
+  
+  .admin-dashboard {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  .admin-dashboard h1 {
+    color: black !important;
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    text-shadow: none !important;
+  }
+  
+  .admin-actions button {
+    background: #f0f0f0 !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  
+  .btn-icon {
+    color: #555 !important;
+    filter: none !important;
+  }
+}
+/* ================================
+   MOBILE HINT
+================================ */
+.mobile-hint {
+  margin-top: 25px;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeIn 0.5s ease 1.5s both;
+  opacity: 0;
+}
+
+.mobile-hint p {
+  margin: 0;
+  font-size: 14px;
+  color: #cbd5e1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+  .mobile-hint {
+    display: none;
+  }
+}

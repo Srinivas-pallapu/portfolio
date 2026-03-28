@@ -1,0 +1,364 @@
+.sig-loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #0a0a1a 0%, #050510 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 9999;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(0px);
+}
+
+.sig-loader--done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Premium Glow Effect ── */
+.sig-loader::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(85, 51, 170, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    animation: ambientPulse 3s ease-in-out infinite;
+}
+
+.sig-loader::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, 
+        rgba(85, 51, 170, 0.02) 0px, 
+        rgba(85, 51, 170, 0.02) 2px,
+        transparent 2px, 
+        transparent 8px);
+    pointer-events: none;
+}
+
+@keyframes ambientPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+/* ── Signature SVG Container ── */
+.sig-loader__wrap {
+    position: relative;
+    width: min(85vw, 620px);
+    aspect-ratio: 925 / 726;
+    filter: drop-shadow(0 0 20px rgba(85, 51, 170, 0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.sig-loader__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(204, 153, 255, 0.5));
+}
+
+/* Path Animation - Premium Drawing Effect */
+.sig-loader__svg path {
+    transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    filter: drop-shadow(0 0 2px rgba(204, 153, 255, 0.6));
+}
+
+.sig-loader__svg path[style*="opacity: 1"] {
+    animation: pathGlow 0.8s ease-out forwards;
+}
+
+@keyframes pathGlow {
+    0% {
+        filter: drop-shadow(0 0 0px rgba(204, 153, 255, 0));
+    }
+    100% {
+        filter: drop-shadow(0 0 4px rgba(204, 153, 255, 0.8));
+    }
+}
+
+/* ── Premium Footer Progress ── */
+.sig-loader__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: min(85vw, 400px);
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Percentage Text - Premium Style */
+.sig-loader__pct {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    background: linear-gradient(135deg, #b47eff 0%, #8a4fff 50%, #5c2e9e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(180, 126, 255, 0.5);
+    position: relative;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.7; letter-spacing: 0.3em; }
+    50% { opacity: 1; letter-spacing: 0.35em; }
+}
+
+/* Progress Track - Premium Design */
+.sig-loader__track {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(85, 51, 170, 0.2) 0%,
+        rgba(85, 51, 170, 0.3) 50%,
+        rgba(85, 51, 170, 0.2) 100%);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated Track Glow */
+.sig-loader__track::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(204, 153, 255, 0.4), 
+        transparent);
+    animation: trackShimmer 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes trackShimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Progress Bar - Vibrant Gradient */
+.sig-loader__bar {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #ff6b4a 0%,
+        #ff8c42 25%,
+        #ffd93d 50%,
+        #6bcf7f 75%,
+        #4a90e2 100%);
+    border-radius: 3px;
+    box-shadow: 
+        0 0 12px rgba(255, 107, 74, 0.6),
+        0 0 8px rgba(255, 140, 66, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: width 0.05s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Particles on Progress Bar */
+.sig-loader__bar::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: 0;
+    width: 30px;
+    height: calc(100% + 4px);
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.8), 
+        transparent);
+    animation: particleWave 1.5s ease-in-out infinite;
+    filter: blur(2px);
+}
+
+@keyframes particleWave {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Loading Indicator - Orbital Rings */
+.sig-loader__footer::before,
+.sig-loader__footer::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.sig-loader__footer::before {
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(85, 51, 170, 0.3);
+    border-top-color: #b47eff;
+    border-right-color: #ff8c42;
+    animation: rotateRing 3s linear infinite;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sig-loader__footer::after {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(204, 153, 255, 0.3);
+    border-bottom-color: #ff6b4a;
+    border-left-color: #6bcf7f;
+    animation: rotateRingReverse 2.5s linear infinite;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes rotateRing {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes rotateRingReverse {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(-360deg); }
+}
+
+/* HD Screen Optimization - 1080p */
+@media (min-width: 1920px) {
+    .sig-loader__wrap {
+        width: min(70vw, 800px);
+    }
+    
+    .sig-loader__footer {
+        width: min(70vw, 500px);
+    }
+    
+    .sig-loader__pct {
+        font-size: 16px;
+    }
+    
+    .sig-loader__track {
+        height: 4px;
+    }
+}
+
+/* Mobile Responsive - Premium */
+@media (max-width: 768px) {
+    .sig-loader {
+        gap: 24px;
+    }
+    
+    .sig-loader__wrap {
+        width: min(90vw, 480px);
+    }
+    
+    .sig-loader__footer {
+        width: min(90vw, 280px);
+        gap: 10px;
+    }
+    
+    .sig-loader__pct {
+        font-size: 11px;
+        letter-spacing: 0.25em;
+    }
+    
+    .sig-loader__track {
+        height: 2px;
+    }
+    
+    .sig-loader__footer::before {
+        width: 45px;
+        height: 45px;
+        top: -35px;
+    }
+    
+    .sig-loader__footer::after {
+        width: 30px;
+        height: 30px;
+        top: -27px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sig-loader {
+        gap: 20px;
+    }
+    
+    .sig-loader__wrap {
+        width: min(85vw, 340px);
+    }
+    
+    .sig-loader__pct {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+    }
+    
+    .sig-loader__footer::before,
+    .sig-loader__footer::after {
+        display: none;
+    }
+}
+
+/* Performance Optimization */
+@media (prefers-reduced-motion: reduce) {
+    .sig-loader::before,
+    .sig-loader__wrap,
+    .sig-loader__pct,
+    .sig-loader__track::before,
+    .sig-loader__bar::after,
+    .sig-loader__footer::before,
+    .sig-loader__footer::after {
+        animation: none;
+    }
+    
+    .sig-loader__wrap {
+        transform: none;
+    }
+}
+
+/* Dark Mode Enhancement */
+@media (prefers-color-scheme: dark) {
+    .sig-loader {
+        background: radial-gradient(circle at center, #0a0a1a 0%, #020210 100%);
+    }
+    
+    .sig-loader__bar {
+        box-shadow: 
+            0 0 15px rgba(255, 107, 74, 0.8),
+            0 0 10px rgba(255, 140, 66, 0.6);
+    }
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+    .sig-loader {
+        background: radial-gradient(circle at center, #f5f5ff 0%, #e8e8ff 100%);
+    }
+    
+    .sig-loader__pct {
+        background: linear-gradient(135deg, #8a4fff 0%, #5c2e9e 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+    
+    .sig-loader__track {
+        background: linear-gradient(90deg, 
+            rgba(85, 51, 170, 0.1) 0%,
+            rgba(85, 51, 170, 0.2) 50%,
+            rgba(85, 51, 170, 0.1) 100%);
+    }
+}

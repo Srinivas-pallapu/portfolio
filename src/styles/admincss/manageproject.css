@@ -1,0 +1,818 @@
+/* ================================
+   MANAGE PROJECTS ADMIN STYLES - RESPONSIVE
+================================ */
+:root {
+  --teal: #64ffda;
+  --teal-dark: #52d9b8;
+  --dark: #000000;
+  --darker: #0a192f;
+  --text-primary: #e6f1ff;
+  --text-secondary: #94a3b8;
+  --text-muted: #8892b0;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --danger: #ff4757;
+  --success: #2ed573;
+  --warning: #ffa502;
+  --info: #3498db;
+  --border-radius: clamp(12px, 2vw, 16px);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================
+   BASE STYLES
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #000000;
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================
+   BACKGROUND CANVAS
+================================ */
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #000000;
+  pointer-events: none;
+}
+
+/* ================================
+   MAIN WRAPPER
+================================ */
+.manage-projects-wrapper {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1rem);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.manage-projects {
+  max-width: min(1200px, 95vw);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================
+   HEADER STYLES
+================================ */
+.manage-projects h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  animation: gradientFlow 3s ease infinite;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+}
+
+.manage-projects h2::after {
+  content: '';
+  display: block;
+  width: clamp(60px, 15vw, 100px);
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+  margin: clamp(0.5rem, 1.5vw, 1rem) auto 0;
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.manage-projects h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--teal);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ================================
+   FORM SECTION
+================================ */
+.form-section {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.form-card {
+  background: rgba(10, 25, 47, 0.7);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  border-radius: var(--border-radius);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+
+.form-card:hover {
+  border-color: rgba(100, 255, 218, 0.25);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(100, 255, 218, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Input Fields */
+.form-group input,
+.form-group textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: calc(var(--border-radius) * 0.75);
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-primary);
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  font-family: inherit;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: rgba(100, 255, 218, 0.05);
+  box-shadow: 
+    0 0 0 3px rgba(100, 255, 218, 0.15),
+    0 0 20px rgba(100, 255, 218, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Link Fields */
+.link-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.link-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.link-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--teal);
+  font-size: 1rem;
+  z-index: 1;
+}
+
+.link-field input {
+  padding-left: 2.8rem !important;
+}
+
+/* Dynamic Fields */
+.dynamic-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.dynamic-fields label {
+  color: var(--teal);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.technology-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tech-field {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.tech-field input {
+  flex: 1;
+}
+
+.remove-tech-btn {
+  background: rgba(255, 71, 87, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+  border-radius: calc(var(--border-radius) * 0.5);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.remove-tech-btn:hover {
+  background: rgba(255, 71, 87, 0.2);
+  transform: translateY(-2px);
+}
+
+.add-tech-btn {
+  background: rgba(255, 165, 2, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(255, 165, 2, 0.3);
+  border-radius: calc(var(--border-radius) * 0.75);
+  padding: 0.875rem 1.25rem;
+  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.add-tech-btn:hover {
+  background: rgba(255, 165, 2, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.save-btn {
+  background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+  color: var(--darker);
+  border: none;
+  border-radius: calc(var(--border-radius) * 0.75);
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 48px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 25px rgba(100, 255, 218, 0.4),
+    0 5px 15px rgba(100, 255, 218, 0.2);
+}
+
+.save-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(90deg, 
+    rgba(100, 255, 218, 0.5), 
+    rgba(82, 217, 184, 0.5));
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: calc(var(--border-radius) * 0.75);
+  padding: clamp(0.875rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+}
+
+/* ================================
+   PROJECTS SECTION
+================================ */
+.projects-section {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.no-projects {
+  text-align: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: rgba(10, 25, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(8px);
+}
+
+.no-projects p {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.6;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: 1.5rem;
+}
+
+/* Project Card */
+.project-card {
+  background: rgba(10, 25, 47, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius);
+  padding: clamp(1.25rem, 3vw, 1.5rem);
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card:hover {
+  border-color: rgba(100, 255, 218, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 8px 25px rgba(100, 255, 218, 0.1),
+    0 0 0 1px rgba(100, 255, 218, 0.05);
+}
+
+/* Project Header */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.project-header h4 {
+  color: var(--teal);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: calc(var(--border-radius) * 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.edit-btn {
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--teal);
+  border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.edit-btn:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background: rgba(255, 71, 87, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(255, 71, 87, 0.3);
+}
+
+.delete-btn:hover {
+  background: rgba(255, 71, 87, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Project Content */
+.project-description {
+  color: var(--text-secondary);
+  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Project Links */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+  transition: var(--transition);
+  padding: 0.4rem 0.8rem;
+  background: rgba(100, 255, 218, 0.1);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: calc(var(--border-radius) * 0.5);
+}
+
+.project-link:hover {
+  color: var(--teal-dark);
+  background: rgba(100, 255, 218, 0.15);
+  transform: translateY(-1px);
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
+}
+
+/* Project Technologies */
+.project-tech {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tech-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tech-tag {
+  background: rgba(100, 255, 218, 0.1);
+  color: var(--teal);
+  padding: 0.2rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.tech-tag:hover {
+  background: rgba(100, 255, 218, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ================================
+   POPUP MESSAGE
+================================ */
+.popup-message {
+  position: fixed;
+  top: clamp(1rem, 3vw, 1.25rem);
+  right: clamp(1rem, 3vw, 1.25rem);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+  border-radius: calc(var(--border-radius) * 0.75);
+  font-weight: 500;
+  animation: slideInRight 0.3s ease forwards;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  border: 1px solid;
+  max-width: min(400px, 90vw);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.popup-message.success {
+  background: rgba(46, 213, 115, 0.15);
+  color: var(--success);
+  border-color: rgba(46, 213, 115, 0.3);
+}
+
+.popup-message.error {
+  background: rgba(255, 71, 87, 0.15);
+  color: var(--danger);
+  border-color: rgba(255, 71, 87, 0.3);
+}
+
+.popup-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ================================
+   LOADING STATE
+================================ */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(300px, 50vh, 400px);
+  gap: clamp(0.75rem, 2vw, 1rem);
+}
+
+.loading-spinner {
+  width: clamp(40px, 8vw, 50px);
+  height: clamp(40px, 8vw, 50px);
+  border: 3px solid transparent;
+  border-top: 3px solid var(--teal);
+  border-right: 3px solid rgba(100, 255, 218, 0.5);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-state p {
+  color: var(--text-secondary);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+/* ================================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .save-btn,
+  .cancel-btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .project-actions {
+    align-self: flex-end;
+  }
+  
+  .link-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .link-icon {
+    position: static;
+    margin-bottom: 0.25rem;
+  }
+  
+  .link-field input {
+    padding-left: 1rem !important;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .manage-projects h2 {
+    font-size: 1.6rem;
+  }
+  
+  .form-card {
+    padding: 1.25rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .popup-message {
+    left: 1rem;
+    right: 1rem;
+    text-align: center;
+  }
+  
+  .edit-btn span,
+  .delete-btn span {
+    display: none;
+  }
+  
+  .edit-btn::after {
+    content: '✏️';
+  }
+  
+  .delete-btn::after {
+    content: '🗑️';
+  }
+}
+
+/* Very Small Mobile (320px and below) */
+@media (max-width: 320px) {
+  .manage-projects-wrapper {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .save-btn,
+  .cancel-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .project-card {
+    padding: 1rem;
+  }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+================================ */
+@media (hover: none) and (pointer: coarse) {
+  .project-card:hover,
+  .save-btn:hover:not(:disabled),
+  .cancel-btn:hover,
+  .edit-btn:hover,
+  .delete-btn:hover,
+  .remove-tech-btn:hover,
+  .add-tech-btn:hover,
+  .project-link:hover,
+  .tech-tag:hover {
+    transform: none;
+  }
+  
+  .project-card:active,
+  .save-btn:active:not(:disabled),
+  .cancel-btn:active,
+  .edit-btn:active,
+  .delete-btn:active,
+  .remove-tech-btn:active,
+  .add-tech-btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.form-group input:focus-visible,
+.form-group textarea:focus-visible,
+.save-btn:focus-visible,
+.cancel-btn:focus-visible,
+.remove-tech-btn:focus-visible,
+.add-tech-btn:focus-visible,
+.edit-btn:focus-visible,
+.delete-btn:focus-visible,
+.project-link:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* ================================
+   PRINT STYLES
+================================ */
+@media print {
+  .manage-projects-wrapper {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .bg-canvas {
+    display: none !important;
+  }
+  
+  .manage-projects h2 {
+    color: black !important;
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+  }
+  
+  .form-card,
+  .project-card,
+  .no-projects {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  
+  .popup-message {
+    display: none !important;
+  }
+}

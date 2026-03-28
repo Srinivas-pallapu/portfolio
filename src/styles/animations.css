@@ -1,0 +1,30 @@
+.animated-bg {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #63b215, #0bdeb4, #30ba42, #419128);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Particle */
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleFade 0.8s linear forwards;
+}
+
+@keyframes particleFade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); }
+}
