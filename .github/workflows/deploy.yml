@@ -9,14 +9,17 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - run: npm install
       - run: npm run build
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@v1
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseToken: "${{ secrets.FIREBASE_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
           projectId: srinivasapallapu9
